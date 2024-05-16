@@ -1,4 +1,4 @@
-package Main;
+package presentacion.vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;

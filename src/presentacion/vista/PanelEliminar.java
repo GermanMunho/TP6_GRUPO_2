@@ -1,4 +1,4 @@
-package Main;
+package presentacion.vista;
 
 import javax.swing.JPanel;
 import javax.swing.JList;
@@ -27,3 +27,4 @@ public class PanelEliminar extends JPanel{
 		add(lblEliminarUsuarios);
 	}
 }
+
