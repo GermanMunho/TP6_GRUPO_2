@@ -26,7 +26,7 @@ public class PanelModificar extends JPanel{
 		add(btnModificar);
 		
 		JLabel lblSelecioneLaPersona = new JLabel("Selecione la Persona a Modificar");
-		lblSelecioneLaPersona.setBounds(21, 29, 177, 14);
+		lblSelecioneLaPersona.setBounds(21, 29, 238, 14);
 		add(lblSelecioneLaPersona);
 		
 		txtNombre = new JTextField();

@@ -2,13 +2,23 @@ package negocioImpl;
 
 
 import java.util.List;
+
+import dao.PersonaDao;
+import daoImpl.PersonaDaoImpl;
 import entidad.Persona;
 import negocio.PersonaNegocio;
 
 public class PersonaNegocioImpl implements PersonaNegocio {
 	
-		public boolean agregar(Persona persona) {
-			return false;
+	PersonaDao pDao = new PersonaDaoImpl();
+	
+		public boolean agregar(Persona p) {
+			boolean estado=false;
+			if(p.getDNI().trim().length() > 0 && p.getNombre().trim().length() >0 && p.getApellido().trim().length() > 0)
+			{
+				estado=pDao.agregar(p);
+			}
+			return estado;
 		}
 		public boolean eliminar(Persona persona_eliminar) {
 			return false;
@@ -17,6 +27,6 @@ public class PersonaNegocioImpl implements PersonaNegocio {
 			return false;
 		}
 		public List<Persona> listar() {
-			return null;
+			return pDao.listar();
 		}
 }

@@ -23,7 +23,7 @@ public class PanelEliminar extends JPanel{
 		add(btnAceptar);
 		
 		JLabel lblEliminarUsuarios = new JLabel("Eliminar Usuarios");
-		lblEliminarUsuarios.setBounds(161, 11, 99, 14);
+		lblEliminarUsuarios.setBounds(161, 11, 139, 14);
 		add(lblEliminarUsuarios);
 	}
 }

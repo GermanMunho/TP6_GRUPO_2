@@ -30,6 +30,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	private void IniciarComponentes() {
+		setBounds(150, 150, 500, 400);
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 

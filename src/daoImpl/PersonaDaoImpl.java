@@ -61,9 +61,31 @@ public class PersonaDaoImpl implements PersonaDao {
 
 	@Override
 	public List<Persona> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement statement;
+		ResultSet rs;
+		ArrayList<Persona> personas = new ArrayList<Persona>();
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(listar);
+			rs = statement.executeQuery();
+			while(rs.next())
+			{
+				personas.add(getPersona(rs));
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return personas;
 	}
 	
-	
+	public Persona getPersona(ResultSet rs) throws SQLException
+	{
+		String DNI = rs.getString("DNI");
+		String nombre = rs.getString("Nombre");
+		String apellido = rs.getString("Apellido");
+		return new Persona(DNI, nombre, apellido);
+	}
 }
