@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import negocio.PersonaNegocio;
 import entidad.Persona;
@@ -29,6 +31,7 @@ public class Controlador implements ActionListener {
 	private VentanaPrincipal ventanaPrincipal;
 	private PanelAgregar panelAgregar;
 	private PanelEliminar panelEliminar;
+	
 	private PanelListar panelListar;
 	private PanelModificar panelModificar;
 	private PersonaNegocio personaNegocio;
@@ -101,6 +104,10 @@ public class Controlador implements ActionListener {
 		ventanaPrincipal.getContentPane().add(panelEliminar);
 		ventanaPrincipal.getContentPane().repaint();
 		ventanaPrincipal.getContentPane().revalidate();
+		
+		this.personasTotal = (ArrayList<Persona>)personaNegocio.listar();
+		this.llenarTabla(this.personasTotal);
+		
 	}
 	
 	public void  EventoClickMenu_AbrirPanel_ListarPersona(ActionEvent a)
@@ -109,6 +116,8 @@ public class Controlador implements ActionListener {
 		ventanaPrincipal.getContentPane().add(panelListar);
 		ventanaPrincipal.getContentPane().repaint();
 		ventanaPrincipal.getContentPane().revalidate();
+		
+		this.refrescarTabla();
 	}
 	
 	public void  EventoClickMenu_AbrirPanel_ModificarPersona(ActionEvent a)
@@ -128,6 +137,29 @@ public class Controlador implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	
+	public void llenarTabla(List<Persona> personasEnTabla) {
+		this.panelListar.getModelPersonas().setRowCount(0); //Para vaciar la tabla
+		this.panelListar.getModelPersonas().setColumnCount(0);
+		this.panelListar.getModelPersonas().setColumnIdentifiers(this.panelListar.getNombreColumnas());
+
+		for (Persona p : personasEnTabla)
+		{
+			String dni = p.getDNI();
+			String nombre = p.getNombre();
+			String apellido = p.getApellido();
+			Object[] fila = {nombre, apellido, dni};
+			this.panelListar.getModelPersonas().addRow(fila);
+		}
+		
+	}
+	
+	private void refrescarTabla()
+	{
+		this.personasTotal = (ArrayList<Persona>) personaNegocio.listar();
+		this.llenarTabla(this.personasTotal);
 	}
 	
 }
