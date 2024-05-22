@@ -10,6 +10,6 @@ public interface PersonaDao {
 	
 	public boolean agregar(Persona persona);
 	public boolean eliminar(Persona persona_eliminar);
-	public boolean modificar(Persona persona_modificar, Persona persona_modificada);
+	public boolean modificar(Persona persona_modificar);
 	public List<Persona> listar();
 }

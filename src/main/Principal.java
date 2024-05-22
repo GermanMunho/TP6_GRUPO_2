@@ -2,8 +2,8 @@ package main;
 
 import negocio.PersonaNegocio;
 import negocioImpl.PersonaNegocioImpl;
+import presentacion.controlador.ControladorVentPrinc;
 import presentacion.vista.VentanaPrincipal;
-import presentacion.vista.controlador.Controlador;
 
 public class Principal {
 
@@ -11,7 +11,7 @@ public class Principal {
 
 		VentanaPrincipal vista = new VentanaPrincipal();
 		PersonaNegocio negocio = new PersonaNegocioImpl();
-		Controlador controlador = new Controlador(vista, negocio);
+		ControladorVentPrinc controlador = new ControladorVentPrinc(vista, negocio);
 		controlador.inicializar();
 	}
 

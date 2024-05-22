@@ -3,7 +3,6 @@ package presentacion.vista;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.CompoundBorder;
 import javax.swing.table.DefaultTableModel;
 
 
