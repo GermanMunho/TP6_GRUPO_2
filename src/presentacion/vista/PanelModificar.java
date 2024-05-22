@@ -42,8 +42,8 @@ public class PanelModificar extends JPanel {
         txtApellido.setColumns(10);
 
         txtDNI = new JTextField();
-        txtDNI.setBounds(83, 193, 86, 20);
         txtDNI.setEditable(false);
+        txtDNI.setBounds(83, 193, 86, 20);
         add(txtDNI);
         txtDNI.setColumns(10);
 

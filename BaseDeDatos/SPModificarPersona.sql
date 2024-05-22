@@ -1,8 +1,10 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SPModificarPersona`(Udni varchar(20),
-    Unombre VARCHAR(45),
-	Uapellido VARCHAR(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPModificarPersona`(
+    IN pDNI VARCHAR(15),
+    IN pNombre VARCHAR(50),
+    IN pApellido VARCHAR(50)
+)
 BEGIN
-UPDATE personas
-    SET nombre = Unombre,  apellido = Uapellido
-    WHERE dni = Udni;
-    END
+    UPDATE personas
+    SET Nombre = pNombre, Apellido = pApellido
+    WHERE DNI = pDNI;
+END

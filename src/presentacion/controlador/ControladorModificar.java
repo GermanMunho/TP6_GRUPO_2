@@ -33,8 +33,8 @@ public class ControladorModificar {
 			persona_modificar.setApellido(panel.getTxtApellido().getText());
 
 			if (personaNegocio.modificar(persona_modificar)) {
-				LlenarTabla();
 				panel.mostrarMensaje("Elemento modificado correctamente");
+				LlenarTabla();
 			} else {
 				panel.mostrarMensaje("Error al modificar el elemento");
 			}
@@ -62,19 +62,22 @@ public class ControladorModificar {
 				panel.getTxtDNI().setText(persona_seleccionada.getDNI());
 				panel.getTxtDNI().setEditable(false);
 			} else {
-				LlenarTabla();
+				limpiarCampos();
 			}
 		}
 	}
 
 	private void LlenarTabla() {
-		this.personasTotal = (ArrayList<Persona>) this.personaNegocio.listar(); 
+		this.personasTotal = (ArrayList<Persona>) this.personaNegocio.listar();
 		llenarJList(this.personasTotal);
+		limpiarCampos();
+	}
+
+	private void limpiarCampos() {
 		panel.getTxtNombre().setText("");
 		panel.getTxtApellido().setText("");
 		panel.getTxtDNI().setText("");
-		persona_modificar=null;
+		persona_modificar = null;
 	}
 
-	
 }
