@@ -14,13 +14,15 @@ import presentacion.vista.PanelModificar;
 public class ControladorModificar {
 	private PanelModificar panel;
 	private PersonaNegocio personaNegocio;
+	DefaultListModel<String> model;
 	private ArrayList<Persona> personasTotal;
 	private Persona persona_modificar;
 
 	public ControladorModificar(PanelModificar panelModificar, PersonaNegocio personaNegocio) {
 		this.panel = panelModificar;
 		this.personaNegocio = personaNegocio;
-
+		this.model = new DefaultListModel<String>();
+		
 		this.panel.getBtnModificar().addActionListener(this::EventoClickBoton_ModificarPersona);
 		this.panel.getList().addListSelectionListener(this::EventoSeleccionarPersona);
 
@@ -37,6 +39,7 @@ public class ControladorModificar {
 				LlenarTabla();
 			} else {
 				panel.mostrarMensaje("Error al modificar el elemento");
+				System.out.println(personaNegocio.modificar(persona_modificar));
 			}
 		} else {
 			panel.mostrarMensaje("Seleccione un elemento para modificar");
@@ -44,7 +47,7 @@ public class ControladorModificar {
 	}
 
 	private void llenarJList(List<Persona> personasEnLista) {
-		DefaultListModel<String> model = new DefaultListModel<>();
+		this.model = new DefaultListModel<String>();
 		for (Persona p : personasEnLista) {
 			model.addElement(p.getNombre() + " " + p.getApellido() + " - " + p.getDNI());
 		}
@@ -54,12 +57,12 @@ public class ControladorModificar {
 	public void EventoSeleccionarPersona(ListSelectionEvent e) {
 		if (!e.getValueIsAdjusting()) {
 			int selectedIndex = panel.getList().getSelectedIndex();
+			this.actualizarLP();
 			if (selectedIndex != -1 && selectedIndex < personasTotal.size()) {
-				Persona persona_seleccionada = personasTotal.get(selectedIndex);
-				persona_modificar = persona_seleccionada;
-				panel.getTxtNombre().setText(persona_seleccionada.getNombre());
-				panel.getTxtApellido().setText(persona_seleccionada.getApellido());
-				panel.getTxtDNI().setText(persona_seleccionada.getDNI());
+				persona_modificar = personasTotal.get(selectedIndex);
+				panel.getTxtNombre().setText(persona_modificar.getNombre());
+				panel.getTxtApellido().setText(persona_modificar.getApellido());
+				panel.getTxtDNI().setText(persona_modificar.getDNI());
 				panel.getTxtDNI().setEditable(false);
 			} else {
 				limpiarCampos();
@@ -71,6 +74,9 @@ public class ControladorModificar {
 		this.personasTotal = (ArrayList<Persona>) this.personaNegocio.listar();
 		llenarJList(this.personasTotal);
 		limpiarCampos();
+	}
+	private void actualizarLP() {
+		this.personasTotal = (ArrayList<Persona>) this.personaNegocio.listar();
 	}
 
 	private void limpiarCampos() {

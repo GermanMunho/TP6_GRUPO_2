@@ -24,7 +24,7 @@ public class PersonaNegocioImpl implements PersonaNegocio {
 			return pDao.eliminar(persona_eliminar);
 		}
 		public boolean modificar(Persona persona_modificar) {
-			return false;
+			return pDao.modificar(persona_modificar);
 		}
 		public List<Persona> listar() {
 			return pDao.listar();

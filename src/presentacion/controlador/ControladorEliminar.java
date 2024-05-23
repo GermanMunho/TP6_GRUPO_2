@@ -17,12 +17,12 @@ public class ControladorEliminar {
         this.panel = panelEliminar;
         this.personaNegocio = personaNegocio;
         this.panel.getBtnEliminar().addActionListener(this::EventoClickBoton_EliminarPersona);
-
         this.personasTotal = (ArrayList<Persona>) personaNegocio.listar();
         llenarJList(this.personasTotal);
     }
 
     public void EventoClickBoton_EliminarPersona(ActionEvent a) {
+    	actualizarLP();
         int selectedIndex = panel.getList().getSelectedIndex();
         if (selectedIndex != -1) {
             Persona personaAEliminar = personasTotal.get(selectedIndex);
@@ -44,5 +44,8 @@ public class ControladorEliminar {
             model.addElement(p.getNombre() + " " + p.getApellido() + " - " + p.getDNI());
         }
         panel.getList().setModel(model);
+    }
+    private void actualizarLP() {
+    	this.personasTotal = (ArrayList<Persona>) personaNegocio.listar();
     }
 }
